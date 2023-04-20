@@ -1,17 +1,30 @@
-<!DOCTYPE html>
+<!doctype HTML>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Simple AR Project</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/arjs/dist/ar.js"></script>
-  </head>
-  <body>
-    <a-scene embedded arjs>
-      <a-marker preset="hiro">
-        <a-box position="0 0.5 0" material="color: yellow;"></a-box>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<script src="js/aframe.min.js"></script>
+<script src="js/aframe-ar.js"></script>
+<body style="margin: 0px; overflow: hidden;">
+
+<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+
+    <a-assets>
+		<img id="earth-sphere" src="images/earth-sphere.jpg" />
+	</a-assets>
+
+    <!-- 
+    for more info, see: https://aframe.io/docs/1.0.0/components/animation.html 
+    for more examples:  https://stemkoski.github.io/A-Frame-Examples/animation.html
+    -->
+    
+    <a-marker type="pattern" url="data/kanji.patt">
+        <a-sphere position="0 0.5 0" 
+               material="src: #earth-sphere; transparent: true; opacity: 0.95;"
+               animation__rotate = "property: rotation; dur: 8000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
+        </a-sphere>
+    </a-marker>
+    
+    <a-entity camera></a-entity>
+    
+</a-scene>
+</body>
 </html>
